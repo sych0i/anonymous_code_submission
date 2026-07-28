@@ -1,0 +1,75 @@
+# Fixed reproduction configuration for the ATAC-only VISTA experiments.
+cuda_device: 0
+
+backbone: cnn
+parameterization: subs
+time_conditioning: false
+
+model:
+  length: 200
+  hidden_dim: 128
+  num_cnn_stacks: 4
+  dropout: 0.0
+  clean_data: false
+  cls_free_guidance: false
+
+noise:
+  type: loglinear
+
+sampling:
+  steps: 128
+  noise_removal: true
+
+smc:
+  gamma: 1.0
+  resampling:
+    ess_threshold: 0.98
+    partial: true
+    frequency: 1
+  phi: 4
+  tau: 1.0
+  kl_weight: 0.01
+  num_inference_steps: ${sampling.steps}
+  batches: 1
+  num_particles: 8
+  batch_p: 4096
+  verbose: false
+  disable_progress_bar: true
+  use_continuous_formulation: true
+  final_strategy: all_particles
+
+run_all:
+  num_guidance_steps: 24
+
+# The first three full-guidance traces determine every sparse schedule.
+# Particle aggregation is always weighted in code and is not configurable.
+schedule:
+  warmup_runs: 3
+
+eval_allstep:
+  num_runs: 30
+  start_itr: 0
+  seed_base: 0
+  unique_hamming_threshold: 0.005
+  save_samples: true
+  plot_reward_traces: true
+
+eval:
+  num_runs: 30
+  seed_base: ${eval_allstep.seed_base}
+  atac_threshold: 0.5
+  unique_hamming_threshold: 0.005
+  plot_reward_traces: false
+  methods:
+    - uniformsteps
+    - vista
+    - top_v
+    # Select the T' largest signed differences V_t - V_{t+1}.
+    - top_dv
+    - interval1
+    - interval2
+    - interval3
+    - interval4
+    - interval5
+  allstep_run_dir: null
+  save_samples: true

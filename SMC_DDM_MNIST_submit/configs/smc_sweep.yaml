@@ -1,0 +1,11 @@
+notebook: scripts/smc_binarized_mnist_vista.ipynb
+model_types: [mdm, remdm, udm]
+proposal_modes: [base, grad]
+guidance_steps: [6, 12, 18, 24]
+cuda_device_index: 3
+warmup_seeds: "100:103"
+eval_seeds: "0:50"
+log_dir: scripts/sweep_logs
+continue_on_error: true
+dry_run: false
+skip_visualization: true

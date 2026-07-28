@@ -1,0 +1,9 @@
+venv/
+.venv/
+data/
+__pycache__/
+*.pth
+!model_weights/*.pth
+*.pyc
+scripts/sweep_logs/
+scripts/experiment_results_*.txt

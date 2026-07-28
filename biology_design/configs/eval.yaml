@@ -1,0 +1,9 @@
+defaults:
+  - eval_conf
+  - _self_
+
+hydra:
+  run:
+    dir: ./logs_eval/${now:%Y.%m.%d}/${now:%H%M%S}
+  job:
+    chdir: true
