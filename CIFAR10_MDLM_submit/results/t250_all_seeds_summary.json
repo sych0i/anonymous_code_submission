@@ -1,0 +1,862 @@
+{
+  "metadata": {
+    "seeds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "schedules": [
+      "top_v",
+      "top_dv",
+      "interval1",
+      "interval2",
+      "interval3",
+      "interval4",
+      "interval5",
+      "uniform",
+      "vista"
+    ],
+    "steps": 1000,
+    "guidance_steps": 250,
+    "total_samples_per_seed": 10,
+    "total_samples_per_schedule": 100,
+    "note": "top_v, top_dv, vista share the same M=3 full-guidance warmup run within each seed (reused as part of their generated samples)."
+  },
+  "aggregate": {
+    "top_v": {
+      "num_seeds": 10,
+      "total_samples": 100,
+      "mean_reward": 0.46953622102737425,
+      "std_reward_across_seeds": 0.13331343189219083,
+      "mean_success_rate": 0.49000000953674316,
+      "std_success_rate_across_seeds": 0.17919573318921347,
+      "total_unique_successes": 39,
+      "total_passed_reward_threshold": 39,
+      "per_seed": [
+        {
+          "seed": 1,
+          "mean_reward": 0.7124385237693787,
+          "success_rate": 0.800000011920929,
+          "num_samples": 10,
+          "num_unique_successes": 7,
+          "num_passed_reward_threshold": 7
+        },
+        {
+          "seed": 2,
+          "mean_reward": 0.49299001693725586,
+          "success_rate": 0.6000000238418579,
+          "num_samples": 10,
+          "num_unique_successes": 5,
+          "num_passed_reward_threshold": 5
+        },
+        {
+          "seed": 3,
+          "mean_reward": 0.5424728989601135,
+          "success_rate": 0.4000000059604645,
+          "num_samples": 10,
+          "num_unique_successes": 4,
+          "num_passed_reward_threshold": 4
+        },
+        {
+          "seed": 4,
+          "mean_reward": 0.47155842185020447,
+          "success_rate": 0.5,
+          "num_samples": 10,
+          "num_unique_successes": 5,
+          "num_passed_reward_threshold": 5
+        },
+        {
+          "seed": 5,
+          "mean_reward": 0.36739465594291687,
+          "success_rate": 0.30000001192092896,
+          "num_samples": 10,
+          "num_unique_successes": 2,
+          "num_passed_reward_threshold": 2
+        },
+        {
+          "seed": 6,
+          "mean_reward": 0.5274581909179688,
+          "success_rate": 0.6000000238418579,
+          "num_samples": 10,
+          "num_unique_successes": 4,
+          "num_passed_reward_threshold": 4
+        },
+        {
+          "seed": 7,
+          "mean_reward": 0.37201252579689026,
+          "success_rate": 0.4000000059604645,
+          "num_samples": 10,
+          "num_unique_successes": 2,
+          "num_passed_reward_threshold": 2
+        },
+        {
+          "seed": 8,
+          "mean_reward": 0.33067694306373596,
+          "success_rate": 0.30000001192092896,
+          "num_samples": 10,
+          "num_unique_successes": 2,
+          "num_passed_reward_threshold": 2
+        },
+        {
+          "seed": 9,
+          "mean_reward": 0.2800367474555969,
+          "success_rate": 0.30000001192092896,
+          "num_samples": 10,
+          "num_unique_successes": 2,
+          "num_passed_reward_threshold": 2
+        },
+        {
+          "seed": 10,
+          "mean_reward": 0.5983232855796814,
+          "success_rate": 0.699999988079071,
+          "num_samples": 10,
+          "num_unique_successes": 6,
+          "num_passed_reward_threshold": 6
+        }
+      ]
+    },
+    "top_dv": {
+      "num_seeds": 10,
+      "total_samples": 100,
+      "mean_reward": 0.6494302064180374,
+      "std_reward_across_seeds": 0.09918035569444884,
+      "mean_success_rate": 0.7400000035762787,
+      "std_success_rate_across_seeds": 0.11737879352174384,
+      "total_unique_successes": 67,
+      "total_passed_reward_threshold": 67,
+      "per_seed": [
+        {
+          "seed": 1,
+          "mean_reward": 0.7240915894508362,
+          "success_rate": 0.800000011920929,
+          "num_samples": 10,
+          "num_unique_successes": 7,
+          "num_passed_reward_threshold": 7
+        },
+        {
+          "seed": 2,
+          "mean_reward": 0.7579024434089661,
+          "success_rate": 0.800000011920929,
+          "num_samples": 10,
+          "num_unique_successes": 8,
+          "num_passed_reward_threshold": 8
+        },
+        {
+          "seed": 3,
+          "mean_reward": 0.6052842736244202,
+          "success_rate": 0.699999988079071,
+          "num_samples": 10,
+          "num_unique_successes": 6,
+          "num_passed_reward_threshold": 6
+        },
+        {
+          "seed": 4,
+          "mean_reward": 0.7570021748542786,
+          "success_rate": 0.9000000357627869,
+          "num_samples": 10,
+          "num_unique_successes": 8,
+          "num_passed_reward_threshold": 8
+        },
+        {
+          "seed": 5,
+          "mean_reward": 0.7149158120155334,
+          "success_rate": 0.9000000357627869,
+          "num_samples": 10,
+          "num_unique_successes": 9,
+          "num_passed_reward_threshold": 9
+        },
+        {
+          "seed": 6,
+          "mean_reward": 0.572541356086731,
+          "success_rate": 0.699999988079071,
+          "num_samples": 10,
+          "num_unique_successes": 5,
+          "num_passed_reward_threshold": 5
+        },
+        {
+          "seed": 7,
+          "mean_reward": 0.6416000127792358,
+          "success_rate": 0.699999988079071,
+          "num_samples": 10,
+          "num_unique_successes": 6,
+          "num_passed_reward_threshold": 6
+        },
+        {
+          "seed": 8,
+          "mean_reward": 0.6110831499099731,
+          "success_rate": 0.699999988079071,
+          "num_samples": 10,
+          "num_unique_successes": 6,
+          "num_passed_reward_threshold": 6
+        },
+        {
+          "seed": 9,
+          "mean_reward": 0.43644818663597107,
+          "success_rate": 0.5,
+          "num_samples": 10,
+          "num_unique_successes": 5,
+          "num_passed_reward_threshold": 5
+        },
+        {
+          "seed": 10,
+          "mean_reward": 0.6734330654144287,
+          "success_rate": 0.699999988079071,
+          "num_samples": 10,
+          "num_unique_successes": 7,
+          "num_passed_reward_threshold": 7
+        }
+      ]
+    },
+    "interval1": {
+      "num_seeds": 10,
+      "total_samples": 100,
+      "mean_reward": 0.4722478687763214,
+      "std_reward_across_seeds": 0.10726035734096208,
+      "mean_success_rate": 0.5300000086426735,
+      "std_success_rate_across_seeds": 0.15670212371063763,
+      "total_unique_successes": 49,
+      "total_passed_reward_threshold": 49,
+      "per_seed": [
+        {
+          "seed": 1,
+          "mean_reward": 0.4716850817203522,
+          "success_rate": 0.6000000238418579,
+          "num_samples": 10,
+          "num_unique_successes": 6,
+          "num_passed_reward_threshold": 6
+        },
+        {
+          "seed": 2,
+          "mean_reward": 0.5852742195129395,
+          "success_rate": 0.6000000238418579,
+          "num_samples": 10,
+          "num_unique_successes": 6,
+          "num_passed_reward_threshold": 6
+        },
+        {
+          "seed": 3,
+          "mean_reward": 0.3726772665977478,
+          "success_rate": 0.4000000059604645,
+          "num_samples": 10,
+          "num_unique_successes": 4,
+          "num_passed_reward_threshold": 4
+        },
+        {
+          "seed": 4,
+          "mean_reward": 0.5204852223396301,
+          "success_rate": 0.6000000238418579,
+          "num_samples": 10,
+          "num_unique_successes": 5,
+          "num_passed_reward_threshold": 5
+        },
+        {
+          "seed": 5,
+          "mean_reward": 0.5141451954841614,
+          "success_rate": 0.6000000238418579,
+          "num_samples": 10,
+          "num_unique_successes": 5,
+          "num_passed_reward_threshold": 5
+        },
+        {
+          "seed": 6,
+          "mean_reward": 0.2417736053466797,
+          "success_rate": 0.20000000298023224,
+          "num_samples": 10,
+          "num_unique_successes": 2,
+          "num_passed_reward_threshold": 2
+        },
+        {
+          "seed": 7,
+          "mean_reward": 0.551921546459198,
+          "success_rate": 0.699999988079071,
+          "num_samples": 10,
+          "num_unique_successes": 6,
+          "num_passed_reward_threshold": 6
+        },
+        {
+          "seed": 8,
+          "mean_reward": 0.4677688181400299,
+          "success_rate": 0.5,
+          "num_samples": 10,
+          "num_unique_successes": 5,
+          "num_passed_reward_threshold": 5
+        },
+        {
+          "seed": 9,
+          "mean_reward": 0.5875920653343201,
+          "success_rate": 0.699999988079071,
+          "num_samples": 10,
+          "num_unique_successes": 6,
+          "num_passed_reward_threshold": 6
+        },
+        {
+          "seed": 10,
+          "mean_reward": 0.4091556668281555,
+          "success_rate": 0.4000000059604645,
+          "num_samples": 10,
+          "num_unique_successes": 4,
+          "num_passed_reward_threshold": 4
+        }
+      ]
+    },
+    "interval2": {
+      "num_seeds": 10,
+      "total_samples": 100,
+      "mean_reward": 0.46420460641384126,
+      "std_reward_across_seeds": 0.06809519039576052,
+      "mean_success_rate": 0.5000000044703483,
+      "std_success_rate_across_seeds": 0.13333333407839187,
+      "total_unique_successes": 46,
+      "total_passed_reward_threshold": 46,
+      "per_seed": [
+        {
+          "seed": 1,
+          "mean_reward": 0.4404616951942444,
+          "success_rate": 0.5,
+          "num_samples": 10,
+          "num_unique_successes": 4,
+          "num_passed_reward_threshold": 4
+        },
+        {
+          "seed": 2,
+          "mean_reward": 0.3214717209339142,
+          "success_rate": 0.20000000298023224,
+          "num_samples": 10,
+          "num_unique_successes": 2,
+          "num_passed_reward_threshold": 2
+        },
+        {
+          "seed": 3,
+          "mean_reward": 0.46521052718162537,
+          "success_rate": 0.5,
+          "num_samples": 10,
+          "num_unique_successes": 5,
+          "num_passed_reward_threshold": 5
+        },
+        {
+          "seed": 4,
+          "mean_reward": 0.5011393427848816,
+          "success_rate": 0.6000000238418579,
+          "num_samples": 10,
+          "num_unique_successes": 6,
+          "num_passed_reward_threshold": 6
+        },
+        {
+          "seed": 5,
+          "mean_reward": 0.4348691999912262,
+          "success_rate": 0.5,
+          "num_samples": 10,
+          "num_unique_successes": 5,
+          "num_passed_reward_threshold": 5
+        },
+        {
+          "seed": 6,
+          "mean_reward": 0.4219866693019867,
+          "success_rate": 0.4000000059604645,
+          "num_samples": 10,
+          "num_unique_successes": 3,
+          "num_passed_reward_threshold": 3
+        },
+        {
+          "seed": 7,
+          "mean_reward": 0.5173153877258301,
+          "success_rate": 0.6000000238418579,
+          "num_samples": 10,
+          "num_unique_successes": 6,
+          "num_passed_reward_threshold": 6
+        },
+        {
+          "seed": 8,
+          "mean_reward": 0.46562424302101135,
+          "success_rate": 0.5,
+          "num_samples": 10,
+          "num_unique_successes": 4,
+          "num_passed_reward_threshold": 4
+        },
+        {
+          "seed": 9,
+          "mean_reward": 0.49592429399490356,
+          "success_rate": 0.5,
+          "num_samples": 10,
+          "num_unique_successes": 4,
+          "num_passed_reward_threshold": 4
+        },
+        {
+          "seed": 10,
+          "mean_reward": 0.5780429840087891,
+          "success_rate": 0.699999988079071,
+          "num_samples": 10,
+          "num_unique_successes": 7,
+          "num_passed_reward_threshold": 7
+        }
+      ]
+    },
+    "interval3": {
+      "num_seeds": 10,
+      "total_samples": 100,
+      "mean_reward": 0.4108493149280548,
+      "std_reward_across_seeds": 0.09214316562270117,
+      "mean_success_rate": 0.4500000044703484,
+      "std_success_rate_across_seeds": 0.14337208558989264,
+      "total_unique_successes": 41,
+      "total_passed_reward_threshold": 41,
+      "per_seed": [
+        {
+          "seed": 1,
+          "mean_reward": 0.4811067581176758,
+          "success_rate": 0.5,
+          "num_samples": 10,
+          "num_unique_successes": 4,
+          "num_passed_reward_threshold": 4
+        },
+        {
+          "seed": 2,
+          "mean_reward": 0.4359147548675537,
+          "success_rate": 0.4000000059604645,
+          "num_samples": 10,
+          "num_unique_successes": 4,
+          "num_passed_reward_threshold": 4
+        },
+        {
+          "seed": 3,
+          "mean_reward": 0.3518301844596863,
+          "success_rate": 0.5,
+          "num_samples": 10,
+          "num_unique_successes": 4,
+          "num_passed_reward_threshold": 4
+        },
+        {
+          "seed": 4,
+          "mean_reward": 0.37285900115966797,
+          "success_rate": 0.4000000059604645,
+          "num_samples": 10,
+          "num_unique_successes": 4,
+          "num_passed_reward_threshold": 4
+        },
+        {
+          "seed": 5,
+          "mean_reward": 0.39775654673576355,
+          "success_rate": 0.5,
+          "num_samples": 10,
+          "num_unique_successes": 5,
+          "num_passed_reward_threshold": 5
+        },
+        {
+          "seed": 6,
+          "mean_reward": 0.49652862548828125,
+          "success_rate": 0.6000000238418579,
+          "num_samples": 10,
+          "num_unique_successes": 6,
+          "num_passed_reward_threshold": 6
+        },
+        {
+          "seed": 7,
+          "mean_reward": 0.3430669903755188,
+          "success_rate": 0.30000001192092896,
+          "num_samples": 10,
+          "num_unique_successes": 2,
+          "num_passed_reward_threshold": 2
+        },
+        {
+          "seed": 8,
+          "mean_reward": 0.26796388626098633,
+          "success_rate": 0.20000000298023224,
+          "num_samples": 10,
+          "num_unique_successes": 2,
+          "num_passed_reward_threshold": 2
+        },
+        {
+          "seed": 9,
+          "mean_reward": 0.3720322549343109,
+          "success_rate": 0.4000000059604645,
+          "num_samples": 10,
+          "num_unique_successes": 4,
+          "num_passed_reward_threshold": 4
+        },
+        {
+          "seed": 10,
+          "mean_reward": 0.5894341468811035,
+          "success_rate": 0.699999988079071,
+          "num_samples": 10,
+          "num_unique_successes": 6,
+          "num_passed_reward_threshold": 6
+        }
+      ]
+    },
+    "interval4": {
+      "num_seeds": 10,
+      "total_samples": 100,
+      "mean_reward": 0.3465482771396637,
+      "std_reward_across_seeds": 0.05628332350475519,
+      "mean_success_rate": 0.34000000581145284,
+      "std_success_rate_across_seeds": 0.12649110541194572,
+      "total_unique_successes": 29,
+      "total_passed_reward_threshold": 29,
+      "per_seed": [
+        {
+          "seed": 1,
+          "mean_reward": 0.397190660238266,
+          "success_rate": 0.4000000059604645,
+          "num_samples": 10,
+          "num_unique_successes": 4,
+          "num_passed_reward_threshold": 4
+        },
+        {
+          "seed": 2,
+          "mean_reward": 0.3791790306568146,
+          "success_rate": 0.5,
+          "num_samples": 10,
+          "num_unique_successes": 2,
+          "num_passed_reward_threshold": 2
+        },
+        {
+          "seed": 3,
+          "mean_reward": 0.3821844756603241,
+          "success_rate": 0.4000000059604645,
+          "num_samples": 10,
+          "num_unique_successes": 3,
+          "num_passed_reward_threshold": 3
+        },
+        {
+          "seed": 4,
+          "mean_reward": 0.4198616147041321,
+          "success_rate": 0.5,
+          "num_samples": 10,
+          "num_unique_successes": 4,
+          "num_passed_reward_threshold": 4
+        },
+        {
+          "seed": 5,
+          "mean_reward": 0.3154350221157074,
+          "success_rate": 0.30000001192092896,
+          "num_samples": 10,
+          "num_unique_successes": 3,
+          "num_passed_reward_threshold": 3
+        },
+        {
+          "seed": 6,
+          "mean_reward": 0.3258878290653229,
+          "success_rate": 0.30000001192092896,
+          "num_samples": 10,
+          "num_unique_successes": 3,
+          "num_passed_reward_threshold": 3
+        },
+        {
+          "seed": 7,
+          "mean_reward": 0.23292747139930725,
+          "success_rate": 0.10000000149011612,
+          "num_samples": 10,
+          "num_unique_successes": 1,
+          "num_passed_reward_threshold": 1
+        },
+        {
+          "seed": 8,
+          "mean_reward": 0.28865453600883484,
+          "success_rate": 0.20000000298023224,
+          "num_samples": 10,
+          "num_unique_successes": 2,
+          "num_passed_reward_threshold": 2
+        },
+        {
+          "seed": 9,
+          "mean_reward": 0.35510557889938354,
+          "success_rate": 0.4000000059604645,
+          "num_samples": 10,
+          "num_unique_successes": 4,
+          "num_passed_reward_threshold": 4
+        },
+        {
+          "seed": 10,
+          "mean_reward": 0.3690565526485443,
+          "success_rate": 0.30000001192092896,
+          "num_samples": 10,
+          "num_unique_successes": 3,
+          "num_passed_reward_threshold": 3
+        }
+      ]
+    },
+    "interval5": {
+      "num_seeds": 10,
+      "total_samples": 100,
+      "mean_reward": 0.3560188874602318,
+      "std_reward_across_seeds": 0.08375859234117482,
+      "mean_success_rate": 0.3700000077486038,
+      "std_success_rate_across_seeds": 0.12516655882523028,
+      "total_unique_successes": 33,
+      "total_passed_reward_threshold": 33,
+      "per_seed": [
+        {
+          "seed": 1,
+          "mean_reward": 0.41705361008644104,
+          "success_rate": 0.4000000059604645,
+          "num_samples": 10,
+          "num_unique_successes": 4,
+          "num_passed_reward_threshold": 4
+        },
+        {
+          "seed": 2,
+          "mean_reward": 0.37563610076904297,
+          "success_rate": 0.4000000059604645,
+          "num_samples": 10,
+          "num_unique_successes": 4,
+          "num_passed_reward_threshold": 4
+        },
+        {
+          "seed": 3,
+          "mean_reward": 0.29981210827827454,
+          "success_rate": 0.30000001192092896,
+          "num_samples": 10,
+          "num_unique_successes": 3,
+          "num_passed_reward_threshold": 3
+        },
+        {
+          "seed": 4,
+          "mean_reward": 0.4959471821784973,
+          "success_rate": 0.6000000238418579,
+          "num_samples": 10,
+          "num_unique_successes": 5,
+          "num_passed_reward_threshold": 5
+        },
+        {
+          "seed": 5,
+          "mean_reward": 0.3423440456390381,
+          "success_rate": 0.30000001192092896,
+          "num_samples": 10,
+          "num_unique_successes": 3,
+          "num_passed_reward_threshold": 3
+        },
+        {
+          "seed": 6,
+          "mean_reward": 0.3740566670894623,
+          "success_rate": 0.4000000059604645,
+          "num_samples": 10,
+          "num_unique_successes": 4,
+          "num_passed_reward_threshold": 4
+        },
+        {
+          "seed": 7,
+          "mean_reward": 0.30178558826446533,
+          "success_rate": 0.20000000298023224,
+          "num_samples": 10,
+          "num_unique_successes": 2,
+          "num_passed_reward_threshold": 2
+        },
+        {
+          "seed": 8,
+          "mean_reward": 0.19320140779018402,
+          "success_rate": 0.20000000298023224,
+          "num_samples": 10,
+          "num_unique_successes": 1,
+          "num_passed_reward_threshold": 1
+        },
+        {
+          "seed": 9,
+          "mean_reward": 0.3293822407722473,
+          "success_rate": 0.4000000059604645,
+          "num_samples": 10,
+          "num_unique_successes": 2,
+          "num_passed_reward_threshold": 2
+        },
+        {
+          "seed": 10,
+          "mean_reward": 0.4309699237346649,
+          "success_rate": 0.5,
+          "num_samples": 10,
+          "num_unique_successes": 5,
+          "num_passed_reward_threshold": 5
+        }
+      ]
+    },
+    "uniform": {
+      "num_seeds": 10,
+      "total_samples": 100,
+      "mean_reward": 0.6700761020183563,
+      "std_reward_across_seeds": 0.07915238508662027,
+      "mean_success_rate": 0.7700000047683716,
+      "std_success_rate_across_seeds": 0.1418136597020831,
+      "total_unique_successes": 74,
+      "total_passed_reward_threshold": 74,
+      "per_seed": [
+        {
+          "seed": 1,
+          "mean_reward": 0.6993874907493591,
+          "success_rate": 0.699999988079071,
+          "num_samples": 10,
+          "num_unique_successes": 7,
+          "num_passed_reward_threshold": 7
+        },
+        {
+          "seed": 2,
+          "mean_reward": 0.6921759843826294,
+          "success_rate": 0.800000011920929,
+          "num_samples": 10,
+          "num_unique_successes": 7,
+          "num_passed_reward_threshold": 7
+        },
+        {
+          "seed": 3,
+          "mean_reward": 0.6392807364463806,
+          "success_rate": 0.9000000357627869,
+          "num_samples": 10,
+          "num_unique_successes": 9,
+          "num_passed_reward_threshold": 9
+        },
+        {
+          "seed": 4,
+          "mean_reward": 0.7972283363342285,
+          "success_rate": 1.0,
+          "num_samples": 10,
+          "num_unique_successes": 10,
+          "num_passed_reward_threshold": 10
+        },
+        {
+          "seed": 5,
+          "mean_reward": 0.7486152052879333,
+          "success_rate": 0.9000000357627869,
+          "num_samples": 10,
+          "num_unique_successes": 9,
+          "num_passed_reward_threshold": 9
+        },
+        {
+          "seed": 6,
+          "mean_reward": 0.6772162318229675,
+          "success_rate": 0.699999988079071,
+          "num_samples": 10,
+          "num_unique_successes": 7,
+          "num_passed_reward_threshold": 7
+        },
+        {
+          "seed": 7,
+          "mean_reward": 0.5114879608154297,
+          "success_rate": 0.5,
+          "num_samples": 10,
+          "num_unique_successes": 5,
+          "num_passed_reward_threshold": 5
+        },
+        {
+          "seed": 8,
+          "mean_reward": 0.6238155961036682,
+          "success_rate": 0.800000011920929,
+          "num_samples": 10,
+          "num_unique_successes": 7,
+          "num_passed_reward_threshold": 7
+        },
+        {
+          "seed": 9,
+          "mean_reward": 0.6110344529151917,
+          "success_rate": 0.699999988079071,
+          "num_samples": 10,
+          "num_unique_successes": 6,
+          "num_passed_reward_threshold": 6
+        },
+        {
+          "seed": 10,
+          "mean_reward": 0.7005190253257751,
+          "success_rate": 0.699999988079071,
+          "num_samples": 10,
+          "num_unique_successes": 7,
+          "num_passed_reward_threshold": 7
+        }
+      ]
+    },
+    "vista": {
+      "num_seeds": 10,
+      "total_samples": 100,
+      "mean_reward": 0.5402162939310073,
+      "std_reward_across_seeds": 0.0733500890915306,
+      "mean_success_rate": 0.6300000011920929,
+      "std_success_rate_across_seeds": 0.10593498767135673,
+      "total_unique_successes": 56,
+      "total_passed_reward_threshold": 56,
+      "per_seed": [
+        {
+          "seed": 1,
+          "mean_reward": 0.6409192085266113,
+          "success_rate": 0.699999988079071,
+          "num_samples": 10,
+          "num_unique_successes": 7,
+          "num_passed_reward_threshold": 7
+        },
+        {
+          "seed": 2,
+          "mean_reward": 0.5334932208061218,
+          "success_rate": 0.6000000238418579,
+          "num_samples": 10,
+          "num_unique_successes": 5,
+          "num_passed_reward_threshold": 5
+        },
+        {
+          "seed": 3,
+          "mean_reward": 0.4826924502849579,
+          "success_rate": 0.5,
+          "num_samples": 10,
+          "num_unique_successes": 4,
+          "num_passed_reward_threshold": 4
+        },
+        {
+          "seed": 4,
+          "mean_reward": 0.5808049440383911,
+          "success_rate": 0.699999988079071,
+          "num_samples": 10,
+          "num_unique_successes": 7,
+          "num_passed_reward_threshold": 7
+        },
+        {
+          "seed": 5,
+          "mean_reward": 0.5950890779495239,
+          "success_rate": 0.5,
+          "num_samples": 10,
+          "num_unique_successes": 5,
+          "num_passed_reward_threshold": 5
+        },
+        {
+          "seed": 6,
+          "mean_reward": 0.4710667133331299,
+          "success_rate": 0.6000000238418579,
+          "num_samples": 10,
+          "num_unique_successes": 5,
+          "num_passed_reward_threshold": 5
+        },
+        {
+          "seed": 7,
+          "mean_reward": 0.5644392371177673,
+          "success_rate": 0.699999988079071,
+          "num_samples": 10,
+          "num_unique_successes": 6,
+          "num_passed_reward_threshold": 6
+        },
+        {
+          "seed": 8,
+          "mean_reward": 0.5500676035881042,
+          "success_rate": 0.800000011920929,
+          "num_samples": 10,
+          "num_unique_successes": 6,
+          "num_passed_reward_threshold": 6
+        },
+        {
+          "seed": 9,
+          "mean_reward": 0.5920791625976562,
+          "success_rate": 0.699999988079071,
+          "num_samples": 10,
+          "num_unique_successes": 7,
+          "num_passed_reward_threshold": 7
+        },
+        {
+          "seed": 10,
+          "mean_reward": 0.39151132106781006,
+          "success_rate": 0.5,
+          "num_samples": 10,
+          "num_unique_successes": 4,
+          "num_passed_reward_threshold": 4
+        }
+      ]
+    }
+  }
+}

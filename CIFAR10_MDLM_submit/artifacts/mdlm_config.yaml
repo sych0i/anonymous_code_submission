@@ -1,0 +1,148 @@
+mode: train
+diffusion: absorbing_state
+backbone: unet
+classifier_backbone: null
+parameterization: subs
+time_conditioning: false
+subs_masking: false
+zero_recon_loss: false
+T: 0
+is_vision: true
+seed: 1
+loader:
+  global_batch_size: 256
+  eval_global_batch_size: 64
+  batch_size: ${div_up:${.global_batch_size}, ${eval:${trainer.devices} * ${trainer.num_nodes}}}
+  eval_batch_size: ${div_up:${.eval_global_batch_size}, ${eval:${trainer.devices}
+    * ${trainer.num_nodes}}}
+  num_workers: ${eval:"len(__import__('os').sched_getaffinity(0))"}
+  pin_memory: true
+  persistent_workers: true
+sampling:
+  use_cache: true
+  steps: 128
+  batch_size: 2
+  num_sample_batches: 1
+  use_float64: false
+training:
+  ema: 0.9999
+  antithetic_sampling: true
+  importance_sampling: false
+  sampling_eps: 0.001
+  change_of_variables: false
+  compute_loss_on_pad_tokens: false
+  use_simple_ce_loss: false
+  guidance:
+    cond_dropout: 0.1
+eval:
+  checkpoint_path: ''
+  disable_ema: false
+  generate_samples: false
+  generated_samples_path: ''
+  max_samples: 50000
+optim:
+  weight_decay: 0
+  lr: 0.0002
+  beta1: 0.9
+  beta2: 0.999
+  eps: 1.0e-08
+trainer:
+  _target_: lightning.Trainer
+  accelerator: cuda
+  num_nodes: 1
+  devices: ${device_count:}
+  accumulate_grad_batches: ${div_up:${loader.global_batch_size}, ${eval:${trainer.devices}
+    * ${loader.batch_size} * ${trainer.num_nodes}}}
+  gradient_clip_val: 1.0
+  precision: bf16
+  num_sanity_val_steps: 2
+  max_steps: 300000
+  log_every_n_steps: 10
+  limit_train_batches: 1.0
+  limit_val_batches: 1.0
+  val_check_interval: 10000
+  check_val_every_n_epoch: null
+wandb:
+  project: discrete-diffusion-guidance
+  notes: Guided Discrete Diffusion
+  group: null
+  job_type: training
+  name: cifar10_mdlm
+  id: ${.name}_${seed}
+  tags:
+  - ${noise.type}
+  - ${data.train}
+  - ${data.valid}
+checkpointing:
+  save_dir: ${cwd:}
+  resume_from_ckpt: true
+  resume_ckpt_path: ${.save_dir}/checkpoints/last.ckpt
+callbacks:
+  checkpoint_every_n_steps:
+    _target_: lightning.pytorch.callbacks.ModelCheckpoint
+    save_top_k: -1
+    save_last: true
+    dirpath: ${checkpointing.save_dir}/checkpoints
+    verbose: true
+    auto_insert_metric_name: false
+    every_n_train_steps: 10000
+  checkpoint_monitor:
+    _target_: lightning.pytorch.callbacks.ModelCheckpoint
+    monitor: val/nll
+    mode: min
+    save_top_k: 1
+    save_last: false
+    dirpath: ${checkpointing.save_dir}/checkpoints
+    filename: best
+    auto_insert_metric_name: false
+    verbose: true
+  learning_rate_monitor:
+    _target_: lightning.pytorch.callbacks.LearningRateMonitor
+    logging_interval: step
+data:
+  train: data/cifar10
+  valid: data/cifar10
+  label_col: labels
+  num_classes: 10
+  streaming: false
+  size: 1024
+  length: 3072
+  add_special_tokens: true
+  add_mask_token: true
+  tokenizer_name_or_path: raw_pixels
+model:
+  name: unet
+  type: unet
+  ch: 128
+  num_res_blocks: 2
+  num_scales: 4
+  ch_mult:
+  - 1
+  - 2
+  - 2
+  - 2
+  input_channels: 3
+  output_channels: -1
+  scale_count_to_put_attn: 1
+  data_min_max:
+  - 0
+  - 255
+  dropout: 0.1
+  skip_rescale: true
+  time_conditioning: true
+  time_scale_factor: 1000
+  time_embed_dim: ${.ch}
+  fix_logistic: false
+  size: ${data.size}
+  cond_dim: ${.ch}
+  length: ${data.length}
+strategy:
+  _target_: lightning.pytorch.strategies.DDPStrategy
+  find_unused_parameters: false
+noise:
+  type: loglinear
+  sigma_min: 0.0001
+  sigma_max: 20
+lr_scheduler:
+  _target_: transformers.get_constant_schedule_with_warmup
+  num_warmup_steps: 5000

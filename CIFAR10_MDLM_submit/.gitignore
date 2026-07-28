@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.hf_cache/
+.hydra/
+wandb/
+/data/
+/outputs/
+/eval_runs/
+*.log
+
+# The two reviewer checkpoints under artifacts/ are intentionally versioned.
+!artifacts/
+!artifacts/mdlm_best.ckpt
+!artifacts/mdlm_config.yaml
+!artifacts/reward_classifier_best.ckpt
