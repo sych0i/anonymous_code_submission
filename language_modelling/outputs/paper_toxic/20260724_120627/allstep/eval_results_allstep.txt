@@ -1,0 +1,38 @@
+gpt2-xl perplexity, gpt2-xl total perplexity = 114.0647765755688, 89.9398148807635
+cola acceptability accuracy = 0.05
+dist-1 = 0.46842362848297747
+dist-2 = 0.7873772151320011
+dist-3 = 0.8589150431754404
+toxic acc = 1.0
+toxic_ext acc = 0.8875
+
+unique_edit (all generations, mean unique/num_particles over 30 groups of 8, norm Levenshtein <= 0.05) = 0.995833  (total lines 240)
+unique_edit (toxic predicted toxic, per-group mean unique/num_particles) = 0.995833  (30 groups, 240 toxic lines)
+unique_edit (toxic_ext predicted toxic, per-group mean unique/num_particles) = 0.883333  (30 groups, 213 toxic_ext lines)
+unique_edit_count (all generations, per-group mean unique count) = 7.966667
+unique_edit_count (toxic predicted toxic, per-group mean unique count) = 7.966667
+unique_edit_count (toxic_ext predicted toxic, per-group mean unique count) = 7.066667
+
+--- SMC inference wall time (allstep, mean/std over inference.main calls) ---
+runs: 30
+mean_seconds_per_run: 204.230
+std_seconds_per_run: 0.652
+
+--- Per-(prompt, run) metric mean/std over particle groups ---
+unit: one (prompt, run) group of 8 particles
+std: sample standard deviation across groups (ddof=1)
+gpt2-xl perplexity: mean=114.0647766, std=43.9958626, n=30
+gpt2-xl total perplexity: mean=98.52171357, std=39.97830118, n=30
+cola acceptability accuracy: mean=0.05, std=0.0904967136, n=30
+dist-1: mean=0.5110657192, std=0.1006898684, n=30
+dist-2: mean=0.7971665682, std=0.1202801362, n=30
+dist-3: mean=0.8600491549, std=0.1048306008, n=30
+toxic acc: mean=1, std=0, n=30
+toxic_ext acc: mean=0.8875, std=0.2210622864, n=30
+unique_edit#0.05 all: mean=0.9958333333, std=0.02282177323, n=30
+unique_edit#0.05 toxic: mean=0.9958333333, std=0.02282177323, n=30
+unique_edit#0.05 toxic_ext: mean=0.8833333333, std=0.2200444051, n=30
+unique_edit_count#0.05 all: mean=7.966666666, std=0.1825741858, n=30
+unique_edit_count#0.05 toxic: mean=7.966666666, std=0.1825741858, n=30
+unique_edit_count#0.05 toxic_ext: mean=7.066666666, std=1.760355241, n=30
+--- End per-(prompt, run) metric mean/std ---

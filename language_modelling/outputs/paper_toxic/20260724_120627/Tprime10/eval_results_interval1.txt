@@ -1,0 +1,38 @@
+gpt2-xl perplexity, gpt2-xl total perplexity = 126.52208584950868, 99.25030569098823
+cola acceptability accuracy = 0.0625
+dist-1 = 0.550600594106072
+dist-2 = 0.9055955328053391
+dist-3 = 0.9465114679578072
+toxic acc = 0.775
+toxic_ext acc = 0.8375
+
+unique_edit (all generations, mean unique/num_particles over 30 groups of 8, norm Levenshtein <= 0.05) = 1.000000  (total lines 240)
+unique_edit (toxic predicted toxic, per-group mean unique/num_particles) = 0.775000  (30 groups, 186 toxic lines)
+unique_edit (toxic_ext predicted toxic, per-group mean unique/num_particles) = 0.837500  (30 groups, 201 toxic_ext lines)
+unique_edit_count (all generations, per-group mean unique count) = 8.000000
+unique_edit_count (toxic predicted toxic, per-group mean unique count) = 6.200000
+unique_edit_count (toxic_ext predicted toxic, per-group mean unique count) = 6.700000
+
+--- SMC inference wall time (interval1, mean/std over inference.main calls) ---
+runs: 30
+mean_seconds_per_run: 24.095
+std_seconds_per_run: 0.245
+
+--- Per-(prompt, run) metric mean/std over particle groups ---
+unit: one (prompt, run) group of 8 particles
+std: sample standard deviation across groups (ddof=1)
+gpt2-xl perplexity: mean=126.5220858, std=44.49217411, n=30
+gpt2-xl total perplexity: mean=105.5643092, std=37.95459806, n=30
+cola acceptability accuracy: mean=0.0625, std=0.1025010513, n=30
+dist-1: mean=0.6072144646, std=0.05111936878, n=30
+dist-2: mean=0.9176057443, std=0.04389298954, n=30
+dist-3: mean=0.9469342933, std=0.03484271648, n=30
+toxic acc: mean=0.775, std=0.3015763185, n=30
+toxic_ext acc: mean=0.8375, std=0.2749412163, n=30
+unique_edit#0.05 all: mean=1, std=0, n=30
+unique_edit#0.05 toxic: mean=0.775, std=0.3015763185, n=30
+unique_edit#0.05 toxic_ext: mean=0.8375, std=0.2749412163, n=30
+unique_edit_count#0.05 all: mean=8, std=0, n=30
+unique_edit_count#0.05 toxic: mean=6.2, std=2.412610548, n=30
+unique_edit_count#0.05 toxic_ext: mean=6.7, std=2.19952973, n=30
+--- End per-(prompt, run) metric mean/std ---

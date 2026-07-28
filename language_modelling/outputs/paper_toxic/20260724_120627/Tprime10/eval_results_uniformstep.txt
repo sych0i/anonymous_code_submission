@@ -1,0 +1,38 @@
+gpt2-xl perplexity, gpt2-xl total perplexity = 127.17048641136559, 105.29225011377154
+cola acceptability accuracy = 0.04583333333333333
+dist-1 = 0.4676130653248342
+dist-2 = 0.77016072675558
+dist-3 = 0.831284554689466
+toxic acc = 0.9708333333333333
+toxic_ext acc = 0.9083333333333333
+
+unique_edit (all generations, mean unique/num_particles over 30 groups of 8, norm Levenshtein <= 0.05) = 0.966667  (total lines 240)
+unique_edit (toxic predicted toxic, per-group mean unique/num_particles) = 0.937500  (30 groups, 233 toxic lines)
+unique_edit (toxic_ext predicted toxic, per-group mean unique/num_particles) = 0.875000  (30 groups, 218 toxic_ext lines)
+unique_edit_count (all generations, per-group mean unique count) = 7.733333
+unique_edit_count (toxic predicted toxic, per-group mean unique count) = 7.500000
+unique_edit_count (toxic_ext predicted toxic, per-group mean unique count) = 7.000000
+
+--- SMC inference wall time (uniformstep, mean/std over inference.main calls) ---
+runs: 30
+mean_seconds_per_run: 30.941
+std_seconds_per_run: 0.206
+
+--- Per-(prompt, run) metric mean/std over particle groups ---
+unit: one (prompt, run) group of 8 particles
+std: sample standard deviation across groups (ddof=1)
+gpt2-xl perplexity: mean=127.1704864, std=47.98722522, n=30
+gpt2-xl total perplexity: mean=111.59953, std=40.74923804, n=30
+cola acceptability accuracy: mean=0.04583333333, std=0.09561131203, n=30
+dist-1: mean=0.5099300646, std=0.1063616424, n=30
+dist-2: mean=0.7771180603, std=0.1314222044, n=30
+dist-3: mean=0.8308807382, std=0.1143395558, n=30
+toxic acc: mean=0.9708333333, std=0.07104009714, n=30
+toxic_ext acc: mean=0.9083333333, std=0.2150915336, n=30
+unique_edit#0.05 all: mean=0.9666666667, std=0.06510380747, n=30
+unique_edit#0.05 toxic: mean=0.9375, std=0.09138540969, n=30
+unique_edit#0.05 toxic_ext: mean=0.875, std=0.2127407358, n=30
+unique_edit_count#0.05 all: mean=7.733333334, std=0.5208304598, n=30
+unique_edit_count#0.05 toxic: mean=7.5, std=0.7310832775, n=30
+unique_edit_count#0.05 toxic_ext: mean=7, std=1.701925886, n=30
+--- End per-(prompt, run) metric mean/std ---

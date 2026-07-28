@@ -1,0 +1,25 @@
+allstep_steps: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+uniformstep_steps: [0, 11, 22, 33, 44, 55, 66, 77, 88, 99]
+interval1_steps: [90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+interval2_steps: [68, 69, 70, 71, 72, 73, 74, 75, 76, 77]
+interval3_steps: [45, 46, 47, 48, 49, 50, 51, 52, 53, 54]
+interval4_steps: [22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+interval5_steps: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+vista_steps: [10, 15, 19, 32, 77, 78, 79, 97, 98, 99]
+topv_steps: [0, 1, 2, 3, 5, 6, 7, 8, 9, 10]
+topdv_steps: [37, 49, 52, 75, 77, 82, 88, 97, 98, 99]
+
+trace_to_dp_elapsed_s: 0.011083
+warmup_trace_manifest: ../allstep/allstep_samples_manifest.json
+warmup_trace_dir: None
+eval_schedule_warmup_tags: ['p0_r0_allstep', 'p1_r0_allstep', 'p2_r0_allstep']
+allstep_score: 0
+uniformstep_score: 70.02362590926018
+interval1_score: 64.86918333917849
+interval2_score: 53.6080383482628
+interval3_score: 32.9266991911056
+interval4_score: 22.07669224936685
+interval5_score: 4.8924498963301035
+vista_score: 74.92415593285128
+topv_score: 5.7250874787647135
+topdv_score: 71.12019913705684

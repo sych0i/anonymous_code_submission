@@ -1,0 +1,109 @@
+hydra:
+  searchpath:
+    - file://mdlm/configs
+  run:
+    dir: ./outputs/${smc.proposal_type}_${smc.num_particles}_${smc.kl_weight}_${smc.resampling.frequency}_${smc.phi}/${now:%Y%m%d}/${now:%H%M%S}
+  job:
+    chdir: true
+
+defaults:
+  - config
+  - _self_
+
+# Physical PyTorch GPU index. Override with cuda_device=N.
+cuda_device: 0
+
+eval:
+  checkpoint_path: 'kuleshov-group/mdlm-owt'
+
+backbone: 'hf_dit'
+
+loader:
+  eval_batch_size: 8
+
+data:
+  # Dataset loading is not used during this experiment; keep any incidental
+  # cache inside the reproduction directory instead of an upstream lab path.
+  cache_dir: ${hydra:runtime.cwd}/.cache/datasets
+
+model:
+  length: 100
+
+smc:
+  remdm:
+    schedule: "cosine"
+    remask_strategy: "rescale"
+    eta: 0.00
+  resampling:
+    ess_threshold: 0.98
+    partial: False
+    frequency: 1
+  phi: 4
+  tau: 1.0
+  kl_weight: 0.2
+  num_inference_steps: 100
+  num_particles: 8
+  batch_p: 8
+  lambda_tempering:
+    enabled: False
+    one_at: 100
+  proposal_type: "grad"
+  use_continuous_formulation: True
+  prompt_text: null
+
+ft_model:
+  lora: false
+  ckpt_path: null
+
+run_all:
+  prompt_file: ${hydra:runtime.cwd}/evaluation/pplm_discrim_prompts_orig.jsonl
+  # Number of guided timesteps T' (must not exceed smc.num_inference_steps).
+  num_guidance_steps: 5
+  # Saved all-step traces used to estimate VISTA, Top-V, and Top-dV schedules.
+  # Generate them with sample_allstep_traces.py, then pass either the manifest
+  # or a directory containing reward_trace_*allstep*.jsonl files.
+  warmup_trace_manifest: null
+  warmup_trace_dir: null
+  warmup_trace_glob: "reward_trace_*allstep*.jsonl"
+  # The released schedules average exactly these M=3 all-step traces.
+  # eval_schedule_warmup_samples is a fallback used only when tags are null.
+  eval_schedule_warmup_samples: 3
+  eval_schedule_warmup_tags:
+    - p0_r0_allstep
+    - p1_r0_allstep
+    - p2_r0_allstep
+  # sample_allstep_traces.py: "auto" means every prompt/run in the selected range
+  # (end_prompt_idx, or eval_num_prompts when end_prompt_idx is null).
+  # Set an integer to cap total newly generated traces.
+  allstep_max_samples: auto
+  # Aggregate all-step generations and run the same metrics as eval.py.
+  evaluate_allstep: false
+  # Alternate saved all-step trace source used for VISTA schedule estimation.
+  allstep_cache_manifest: null
+  allstep_cache_dir: null
+  runs_per_prompt: 2
+  start_run_idx: 0
+  end_run_idx: null
+  # null runs all strategies. The released sweep sets this explicitly.
+  strategies: null
+  # 각 전략 inference 직전에만 적용. 동일 (prompt, run)이면 전략 간 같은 시작 RNG.
+  # 끄려면 `run_all.seed=null`
+  seed: 42
+  # Effective sampling key is (seed, prompt_idx, run_idx).
+  # seed1/seed2 are deprecated no-op fields kept so old CLI overrides do not fail.
+  seed1: 0
+  seed2: 0
+  # 프롬프트 인덱스 범위 제어 (중단 후 이어하기용).
+  # 예: p10까지 끝났으면 run_all.start_prompt_idx=11 로 재실행.
+  start_prompt_idx: 0
+  # null이면 start_prompt_idx부터 eval_num_prompts개만 실행.
+  end_prompt_idx: null
+  eval_num_prompts: 15
+  max_eval_len: 1000
+  # Append to inference_timing.jsonl instead of replacing it.
+  append_timing_log: false
+  # Existing text/ABC unit files are reused instead of rerunning inference.
+  skip_existing_samples: false
+  # Deterministic cuDNN behavior for policy comparisons.
+  cudnn_deterministic: true
+  save_all: True
