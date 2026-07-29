@@ -112,8 +112,8 @@ class AggregateTablesTest(unittest.TestCase):
       self.assertIn(
         "| T' | Policy | executed time [s] | unique success | "
         r"$\hat{S}(G)$ |", lines[0])
-      self.assertTrue(any('| 12 | uniform |' in line for line in lines))
-      self.assertTrue(any('| 1000 | full |' in line for line in lines))
+      self.assertTrue(any('| 12 | Uniform |' in line for line in lines))
+      self.assertTrue(any('| 1000 | Full |' in line for line in lines))
       self.assertEqual(
         summary['full_reference']['s_hat_g']['mean'], 0.0)
 

@@ -86,7 +86,7 @@ Use any visible CUDA device by passing its PyTorch device name:
 bash scripts/reproduce_cifar10_mdlm.sh tables cuda:0
 ```
 
-Runs all eight guidance budgets, nine schedules, and ten seeds sequentially on
+Runs all three guidance budgets, nine schedules, and ten seeds sequentially on
 `cuda:0`. Completed seed/budget JSON files are skipped when the command is
 restarted. After all runs finish, it generates the metric tables and the
 five-column policy table under
@@ -148,8 +148,9 @@ worker fails, the launcher exits without aggregating incomplete results.
 Rerunning the same command is safe because every completed seed/budget JSON is
 detected and skipped.
 
-The full sweep contains 720 schedule evaluations
-(8 budgets × 9 schedules × 10 seeds). On the validated A6000 setup it should
+The full sweep contains 280 schedule evaluations
+(10 full-guidance runs plus 3 budgets × 9 schedules × 10 seeds). On the
+validated A6000 setup it should
 be treated as a multi-hour job; runtime varies substantially with GPU,
 filesystem, CUDA, and LPIPS cache state. Generated `.pt`, preview, log, and
 JSON files require roughly 2–3 GB in addition to the environment and
@@ -189,8 +190,8 @@ not change any per-seed experimental hyperparameter.
 The table mode evaluates:
 
 - a full-guidance reference at `T' = T = 1000`;
-- guidance budgets `T' = 12, 25, 50, 100, 125, 150, 200, 250`;
-- schedules `uniform`, `vista`, `top_dv`, `top_v`, and `interval1`–`interval5`;
+- guidance budgets `T' = 5, 15, 25`;
+- schedules `interval1`–`interval5`, `uniform`, `vista`, `top_v`, and `top_dv`;
 - random seeds 1–10;
 - 1,000 reverse steps, 20 particles, warm-up `M=5`, rollout count `J=5`;
 - ESS threshold 0.95 and partial resampling of 10 particles;
@@ -199,7 +200,8 @@ The table mode evaluates:
 Each seed produces five independent SMC generations and retains all 20 final
 particles, i.e. 100 evaluated images per schedule, seed, and budget. The VISTA
 warm-up curve is independent of the guidance budget, so it is computed once
-per seed and safely reused across all eight budgets. Runs are resumable:
+per seed at `T'=25` and safely reused across the other sparse budgets. Runs
+are resumable:
 completed comparison JSON files are skipped.
 
 At completion, the command runs:
@@ -222,7 +224,9 @@ the mean and sample standard deviation across ten seeds, and writes:
 - `policy_table.csv` and `policy_table.md`, with the requested columns
   `T'`, `Policy`, `executed time [s]`, `unique success`, and
   `$\hat{S}(G)$`; the first data row is the `T'=1000` full-guidance
-  reference
+  reference, followed by `T'=5,15,25` in the policy order `Interval 1`,
+  `Interval 2`, `Interval 3`, `Interval 4`, `Interval 5`, `Uniform`,
+  `VISTA-DP`, `Top V`, `Top dV`
 - `tables.json`, including every per-seed value
 - `tables.md`, containing the rendered metric tables
 

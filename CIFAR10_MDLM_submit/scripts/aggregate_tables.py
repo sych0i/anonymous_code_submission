@@ -8,10 +8,22 @@ import os
 import statistics
 
 
-DEFAULT_BUDGETS = (12, 25, 50, 100, 125, 150, 200, 250)
+DEFAULT_BUDGETS = (5, 15, 25)
 DEFAULT_SCHEDULES = (
-  'uniform', 'vista', 'top_dv', 'top_v',
-  'interval1', 'interval2', 'interval3', 'interval4', 'interval5')
+  'interval1', 'interval2', 'interval3', 'interval4', 'interval5',
+  'uniform', 'vista', 'top_v', 'top_dv')
+POLICY_DISPLAY_NAMES = {
+  'full': 'Full',
+  'interval1': 'Interval 1',
+  'interval2': 'Interval 2',
+  'interval3': 'Interval 3',
+  'interval4': 'Interval 4',
+  'interval5': 'Interval 5',
+  'uniform': 'Uniform',
+  'vista': 'VISTA-DP',
+  'top_v': 'Top V',
+  'top_dv': 'Top dV',
+}
 METRICS = {
   'reward': lambda row: row['mean_reward'],
   'success_rate': lambda row: row['success_rate'],
@@ -265,7 +277,7 @@ def _policy_table_lines(
     unique_cell = full_reference['unique_success_lpips003']
     score_cell = full_reference['s_hat_g']
     yield (
-      '| 1000 | full | '
+      f'| 1000 | {POLICY_DISPLAY_NAMES["full"]} | '
       f'{time_cell["mean"]:.2f} ± {time_cell["std"]:.2f} | '
       f'{unique_cell["mean"]:.1f} ± {unique_cell["std"]:.1f} | '
       f'{score_cell["mean"]:.4g} ± {score_cell["std"]:.4g} |')
@@ -275,7 +287,7 @@ def _policy_table_lines(
       unique_cell = tables['unique_success_lpips003'][schedule][str(budget)]
       score_cell = tables['s_hat_g'][schedule][str(budget)]
       yield (
-        f'| {budget} | {schedule} | '
+        f'| {budget} | {POLICY_DISPLAY_NAMES.get(schedule, schedule)} | '
         f'{time_cell["mean"]:.2f} ± {time_cell["std"]:.2f} | '
         f'{unique_cell["mean"]:.1f} ± {unique_cell["std"]:.1f} | '
         f'{score_cell["mean"]:.4g} ± {score_cell["std"]:.4g} |')
@@ -293,7 +305,7 @@ def _write_policy_table_csv(
       score_cell = full_reference['s_hat_g']
       writer.writerow([
         1000,
-        'full',
+        POLICY_DISPLAY_NAMES['full'],
         f'{time_cell["mean"]:.2f} ± {time_cell["std"]:.2f}',
         f'{unique_cell["mean"]:.1f} ± {unique_cell["std"]:.1f}',
         f'{score_cell["mean"]:.4g} ± {score_cell["std"]:.4g}',
@@ -305,7 +317,7 @@ def _write_policy_table_csv(
         score_cell = tables['s_hat_g'][schedule][str(budget)]
         writer.writerow([
           budget,
-          schedule,
+          POLICY_DISPLAY_NAMES.get(schedule, schedule),
           f'{time_cell["mean"]:.2f} ± {time_cell["std"]:.2f}',
           f'{unique_cell["mean"]:.1f} ± {unique_cell["std"]:.1f}',
           f'{score_cell["mean"]:.4g} ± {score_cell["std"]:.4g}',

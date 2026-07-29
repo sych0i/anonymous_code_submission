@@ -38,7 +38,7 @@ if [[ "$MODE" == "smoke" ]]; then
     --device "$DEVICE" \
     --output-dir eval_runs/smoke
 elif [[ "$MODE" == "tables" ]]; then
-  SCHEDULES="uniform,vista,top_dv,top_v,interval1,interval2,interval3,interval4,interval5"
+  SCHEDULES="interval1,interval2,interval3,interval4,interval5,uniform,vista,top_v,top_dv"
   ROOT="eval_runs/tables"
   mkdir -p "$ROOT"
 
@@ -73,23 +73,24 @@ elif [[ "$MODE" == "tables" ]]; then
     fi
 
     # The warm-up value curve is independent of T'. Compute it once at
-    # T'=250, then reuse it for the other seven budgets for this seed.
-    source_dir="$ROOT/t250"
-    source="$source_dir/vista_smc_seed${seed}_t250_comparison.json"
+    # the largest sparse budget, T'=25, then reuse it for the other
+    # budgets for this seed.
+    source_dir="$ROOT/t25"
+    source="$source_dir/vista_smc_seed${seed}_t25_comparison.json"
     mkdir -p "$source_dir"
     if [[ ! -f "$source" ]]; then
       python vista_smc.py \
         --config "$CONFIG" \
         --checkpoint "$CHECKPOINT" \
         --classifier-checkpoint "$CLASSIFIER" \
-        --tag "seed${seed}_t250" \
+        --tag "seed${seed}_t25" \
         --schedules "$SCHEDULES" \
         --seed "$seed" \
         --total-samples 5 \
         --batch-size "$BATCH_SIZE" \
         --num-particles 20 \
         --num-rollout-samples 5 \
-        --guidance-steps 250 \
+        --guidance-steps 25 \
         --num-warmup-runs 5 \
         --ess-threshold 0.95 \
         --partial-resample 10 \
@@ -101,7 +102,7 @@ elif [[ "$MODE" == "tables" ]]; then
         --output-dir "$source_dir"
     fi
 
-    for budget in 12 25 50 100 125 150 200; do
+    for budget in 5 15; do
       out_dir="$ROOT/t${budget}"
       comparison="$out_dir/vista_smc_seed${seed}_t${budget}_comparison.json"
       mkdir -p "$out_dir"
