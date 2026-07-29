@@ -68,7 +68,7 @@ The released environment used Python 3.12, PyTorch 2.6.0 with CUDA 12.4, and a
 48 GB NVIDIA GPU. A recent Linux system with an NVIDIA GPU is expected.
 
 ```bash
-# cd language_modelling_submit 필요없음
+# cd language_modelling_submit
 bash scripts/setup_venv.sh
 ```
 
