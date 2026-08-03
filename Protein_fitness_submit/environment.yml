@@ -1,0 +1,11 @@
+name: protein-fitness-submit
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9.23
+  - cuda-version=12.9
+  - pytorch=2.7.1
+  - torchvision=0.22.0
+  - pip
+  - pip:
+      - -r requirements.txt

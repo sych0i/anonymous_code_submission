@@ -1,0 +1,64 @@
+{
+  "format": 1,
+  "kind": "protein_fitness_reference_tables",
+  "description": "Reference values supplied for Tables E-1 and E-2. Runtime is hardware-dependent.",
+  "metadata": {
+    "experiment": "protein_fitness",
+    "algo": "smc_base",
+    "T": 128,
+    "N": 32,
+    "repeats": 20,
+    "backbones": ["mdlm", "udlm"],
+    "budgets": [128, 16, 32]
+  },
+  "tables": {
+    "mdlm": {
+      "display_name": "MDLM",
+      "rows": [
+        {"budget": 128, "policy": "full", "time_mean": 44.53, "unique_valid_mean": 9.00, "unique_valid_sd": 2.77},
+        {"budget": 16, "policy": "interval1", "time_mean": 6.98, "unique_valid_mean": 13.20, "unique_valid_sd": 3.24},
+        {"budget": 16, "policy": "interval2", "time_mean": 6.97, "unique_valid_mean": 10.65, "unique_valid_sd": 4.44},
+        {"budget": 16, "policy": "interval3", "time_mean": 6.98, "unique_valid_mean": 8.10, "unique_valid_sd": 2.15},
+        {"budget": 16, "policy": "interval4", "time_mean": 6.97, "unique_valid_mean": 6.00, "unique_valid_sd": 2.20},
+        {"budget": 16, "policy": "interval5", "time_mean": 6.75, "unique_valid_mean": 5.35, "unique_valid_sd": 2.16},
+        {"budget": 16, "policy": "top_v", "time_mean": 6.75, "unique_valid_mean": 8.40, "unique_valid_sd": 2.68},
+        {"budget": 16, "policy": "top_dv", "time_mean": 6.97, "unique_valid_mean": 12.60, "unique_valid_sd": 2.58},
+        {"budget": 16, "policy": "uniform", "time_mean": 6.74, "unique_valid_mean": 10.85, "unique_valid_sd": 3.24},
+        {"budget": 16, "policy": "vista", "time_mean": 6.98, "unique_valid_mean": 14.15, "unique_valid_sd": 3.80},
+        {"budget": 32, "policy": "interval1", "time_mean": 12.29, "unique_valid_mean": 12.60, "unique_valid_sd": 4.04},
+        {"budget": 32, "policy": "interval2", "time_mean": 12.30, "unique_valid_mean": 9.60, "unique_valid_sd": 4.58},
+        {"budget": 32, "policy": "interval3", "time_mean": 12.28, "unique_valid_mean": 6.80, "unique_valid_sd": 3.24},
+        {"budget": 32, "policy": "interval4", "time_mean": 12.28, "unique_valid_mean": 6.00, "unique_valid_sd": 2.10},
+        {"budget": 32, "policy": "interval5", "time_mean": 12.06, "unique_valid_mean": 6.10, "unique_valid_sd": 2.47},
+        {"budget": 32, "policy": "top_v", "time_mean": 12.06, "unique_valid_mean": 8.55, "unique_valid_sd": 2.95},
+        {"budget": 32, "policy": "top_dv", "time_mean": 12.29, "unique_valid_mean": 11.25, "unique_valid_sd": 3.49},
+        {"budget": 32, "policy": "uniform", "time_mean": 12.06, "unique_valid_mean": 11.80, "unique_valid_sd": 2.82},
+        {"budget": 32, "policy": "vista", "time_mean": 12.29, "unique_valid_mean": 12.00, "unique_valid_sd": 3.32}
+      ]
+    },
+    "udlm": {
+      "display_name": "UDLM",
+      "rows": [
+        {"budget": 128, "policy": "full", "time_mean": 46.97, "unique_valid_mean": 3.15, "unique_valid_sd": 2.37},
+        {"budget": 16, "policy": "interval1", "time_mean": 7.27, "unique_valid_mean": 4.45, "unique_valid_sd": 3.19},
+        {"budget": 16, "policy": "interval2", "time_mean": 7.28, "unique_valid_mean": 7.50, "unique_valid_sd": 3.72},
+        {"budget": 16, "policy": "interval3", "time_mean": 7.30, "unique_valid_mean": 6.10, "unique_valid_sd": 3.93},
+        {"budget": 16, "policy": "interval4", "time_mean": 7.29, "unique_valid_mean": 5.20, "unique_valid_sd": 2.84},
+        {"budget": 16, "policy": "interval5", "time_mean": 7.04, "unique_valid_mean": 2.20, "unique_valid_sd": 1.20},
+        {"budget": 16, "policy": "top_v", "time_mean": 7.28, "unique_valid_mean": 5.95, "unique_valid_sd": 3.59},
+        {"budget": 16, "policy": "top_dv", "time_mean": 7.26, "unique_valid_mean": 6.40, "unique_valid_sd": 3.91},
+        {"budget": 16, "policy": "uniform", "time_mean": 7.05, "unique_valid_mean": 6.20, "unique_valid_sd": 3.90},
+        {"budget": 16, "policy": "vista", "time_mean": 7.28, "unique_valid_mean": 8.75, "unique_valid_sd": 4.76},
+        {"budget": 32, "policy": "interval1", "time_mean": 13.21, "unique_valid_mean": 8.90, "unique_valid_sd": 5.31},
+        {"budget": 32, "policy": "interval2", "time_mean": 13.21, "unique_valid_mean": 6.80, "unique_valid_sd": 4.64},
+        {"budget": 32, "policy": "interval3", "time_mean": 13.21, "unique_valid_mean": 6.65, "unique_valid_sd": 4.32},
+        {"budget": 32, "policy": "interval4", "time_mean": 13.21, "unique_valid_mean": 4.70, "unique_valid_sd": 3.34},
+        {"budget": 32, "policy": "interval5", "time_mean": 12.97, "unique_valid_mean": 2.95, "unique_valid_sd": 2.50},
+        {"budget": 32, "policy": "top_v", "time_mean": 13.20, "unique_valid_mean": 5.60, "unique_valid_sd": 2.95},
+        {"budget": 32, "policy": "top_dv", "time_mean": 13.22, "unique_valid_mean": 6.05, "unique_valid_sd": 3.52},
+        {"budget": 32, "policy": "uniform", "time_mean": 12.96, "unique_valid_mean": 5.45, "unique_valid_sd": 2.14},
+        {"budget": 32, "policy": "vista", "time_mean": 13.21, "unique_valid_mean": 9.95, "unique_valid_sd": 5.30}
+      ]
+    }
+  }
+}

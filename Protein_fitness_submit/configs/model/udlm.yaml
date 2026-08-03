@@ -1,0 +1,58 @@
+name: udlm
+model:
+  _target_: models.mdlm.MDLM
+  config:
+    mode: sample_eval  # train / ppl_eval / sample_eval
+    diffusion: uniform
+    backbone: dit  # dit / dimamba / ar
+    parameterization: d3pm  # subs / d3pm / sedd
+    time_conditioning: True
+    T: 0  # 0 (continuous time) / 1000
+    subs_masking: False
+    seed: 1
+    eval_batch_size: 512
+    zero_recon_loss: True
+
+    training:
+      ema: 0.9999
+      antithetic_sampling: True
+      importance_sampling: False
+      sampling_eps: 1e-3
+      change_of_variables: False
+
+    optim:
+      weight_decay: 0
+      lr: 3e-4
+      beta1: 0.9
+      beta2: 0.999
+      eps: 1e-8
+
+    sampling:
+      predictor: ddpm  # analytic, ddpm, ddpm_cache
+      steps: 128
+      noise_removal: True
+      num_sample_batches: 2  # Total samples: `num_gpus` * `loader.eval_batch_size` * num_sample_batches
+      num_sample_log: 2
+      semi_ar: False
+      stride_length: 1
+      num_strides: 1
+
+    model:
+      name: tiny
+      type: ddit
+      hidden_size: 512
+      cond_dim: 128
+      length: 1024
+      n_blocks: 8
+      n_heads: 8
+      scale_by_sigma: True
+      dropout: 0.1
+      tie_word_embeddings: False
+
+    noise:
+      type: loglinear
+      sigma_min: 1e-4
+      sigma_max: 20
+
+  tokenizer:
+    _target_: models.tokenizer.ProteinTokenizer
