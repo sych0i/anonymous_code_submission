@@ -4,6 +4,10 @@ channels:
 dependencies:
   - python=3.9.23
   - cuda-version=12.9
+  # Header-only package providing cuda.h. Not pulled in transitively by
+  # pytorch/triton, but required by Triton's conda-forge build to JIT-compile
+  # any CUDA kernel (e.g. flash-attn's rotary-embedding kernel) at runtime.
+  - cuda-cudart-dev
   - pytorch=2.7.1
   - torchvision=0.22.0
   - pip

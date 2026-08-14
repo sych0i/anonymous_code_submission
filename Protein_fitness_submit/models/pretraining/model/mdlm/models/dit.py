@@ -1,4 +1,6 @@
 import math
+import os
+import shutil
 import typing
 
 try:
@@ -13,6 +15,31 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from einops import rearrange
+
+
+def _fix_triton_blackwell_ptxas() -> None:
+    """Work around a Triton/ptxas naming mismatch on Blackwell-class GPUs.
+
+    Triton 3.3.1 (pulled in by this environment's conda-forge build) looks
+    for a binary literally named ``ptxas-blackwell`` on GPUs with compute
+    capability >= sm_100 (e.g. RTX PRO 6000 Blackwell), instead of the
+    regular ``ptxas`` that ships with the CUDA toolkit. Without this, the
+    first flash-attn rotary-embedding kernel compiled on such a GPU raises
+    ``TypeError: stat: path should be string, ... not NoneType`` deep inside
+    Triton. Alias the name via the environment variable Triton already
+    checks first (``TRITON_PTXAS-BLACKWELL_PATH``), so nothing is written to
+    the environment. No-op on non-Blackwell GPUs, when flash-attn is
+    unavailable (PyTorch fallback path), or when ptxas itself cannot be
+    found.
+    """
+    if not HAS_FLASH_ATTN or os.environ.get("TRITON_PTXAS-BLACKWELL_PATH"):
+        return
+    ptxas = shutil.which("ptxas-blackwell") or shutil.which("ptxas")
+    if ptxas:
+        os.environ["TRITON_PTXAS-BLACKWELL_PATH"] = ptxas
+
+
+_fix_triton_blackwell_ptxas()
 
 # Flags required to enable jit fusion kernels
 torch._C._jit_set_profiling_mode(False)

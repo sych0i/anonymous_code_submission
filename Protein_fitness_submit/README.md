@@ -173,7 +173,14 @@ GPU/software stacks despite fixed seeds. The intended reproduction criterion
 is the same qualitative table under the fixed configuration, not bitwise
 identity of every aggregate.
 
-On the reference-class hardware, the complete one-GPU command should be
+The timings reported in the rebuttal were measured after removing redundant
+calls from the sampling loop. This is an implementation-level deduplication
+only: it changes no algorithm, hyperparameter, or per-run experiment setting,
+and leaves the sampled outputs unchanged up to the nondeterminism noted above.
+Wall-clock numbers are therefore lower than those in the original submission,
+while the reported metrics are unaffected.
+
+On the reference-class hardware, the complete one-GPU command should still be
 treated as a multi-hour run. The four-GPU launcher reduces wall time by running
 independent budget/backbone shards; it does not use DDP or alter any per-run
 experiment setting.
