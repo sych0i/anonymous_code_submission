@@ -104,7 +104,9 @@ at a time. This reduces peak VRAM without changing the configured number of
 particles, rollouts, seeds, schedules, or budgets.
 
 `BATCH_SIZE` must divide the five generations per seed, so supported values are
-1 and 5. A smaller value lowers peak VRAM and increases wall-clock time. It can
+1 and 5. A smaller value lowers peak VRAM and increases wall-clock time; since
+`executed time` is a per-generation figure, `BATCH_SIZE=1` also raises it,
+because five generations no longer share one batched forward pass. It can
 also change low-level CUDA random-number grouping, so small stochastic
 differences from the reference table remain possible.
 
