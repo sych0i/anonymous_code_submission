@@ -1,4 +1,4 @@
-**Table E-2: Protein Fitness, UDLM, SMC-base** (32 particles $\times$ 20 runs)
+**Table E-2: Protein Fitness, UDLM, SMC-base** (32 particles $\times$ 20 runs; Time is the mean wall time of a single 32-particle run)
 
 | T' | Policy | Time [s] | Unique Valid |
 |---:|:---|---:|---:|

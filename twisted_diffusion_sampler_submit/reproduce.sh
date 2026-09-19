@@ -96,13 +96,13 @@ run_group() {
 if [[ "${#GPUS[@]}" -eq 1 ]]; then
   run_group "${GPUS[0]}" i123 interval-1 interval-2 interval-3
   run_group "${GPUS[0]}" i45u interval-4 interval-5 uniform
-  run_group "${GPUS[0]}" vtt vista top-V top-dV weighted-vista weighted-vista-2 weighted-vista-3
+  run_group "${GPUS[0]}" vtt vista top-V top-dV weighted-vista weighted-vista-2 weighted-vista-3 weighted-vista-20
 else
   run_group "${GPUS[0]}" i123 interval-1 interval-2 interval-3 &
   pid_i123=$!
   run_group "${GPUS[1]}" i45u interval-4 interval-5 uniform &
   pid_i45u=$!
-  run_group "${GPUS[2]}" vtt vista top-V top-dV weighted-vista weighted-vista-2 weighted-vista-3 &
+  run_group "${GPUS[2]}" vtt vista top-V top-dV weighted-vista weighted-vista-2 weighted-vista-3 weighted-vista-20 &
   pid_vtt=$!
   status=0
   wait "$pid_i123" || status=$?

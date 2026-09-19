@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "description": "Reference aggregate for outputs/eval30_warmup3_budgets_6_12: M=3 frozen warmup, 30 sampling seeds (0..29), T'=6 and 12, and all 12 sparse policies.",
+  "description": "Reference aggregate for outputs/eval30_warmup3_budgets_6_12: M=3 frozen warmup, 30 sampling seeds (0..29), T'=6 and 12, and all 13 sparse policies.",
   "experiment": {
     "target_class": 4,
     "total_steps": 100,
@@ -26,7 +26,7 @@
     "utd_interpretation": "one_shot_pred_xstart_delta_proxy_not_a_proven_upper_bound"
   },
   "artifact_hashes": {
-    "implementation_sha256": "dfb8f68812ee986f18255223a3db1362a025a071eb52b024bf63bc98ab8f05d9",
+    "implementation_sha256": "4666cb8d3fc7c0225b0390e6078dca8d6e9bb2e8cf861417ed015f813b84ecd3",
     "model_checkpoint_sha256": "941455dab870142ea9eb3fb1eeddc1dec00e6355eca2adb124f658f96ac497ae",
     "classifier_checkpoint_sha256": "d52735e768fa7ec2bc98575471468145f369ae869793048d3992b194d76a99b9",
     "model_config_sha256": "de575ae1c57c4152843d2fec140e48a2d1afda17276a10b0097836b7e917b92c",
@@ -585,6 +585,56 @@
           14
         ]
       },
+      "weighted-vista-20": {
+        "mean_unique_valid": 17.133333333333333,
+        "proxy_utd": 0.0033684721422733697,
+        "schedule": [
+          27,
+          36,
+          45,
+          53,
+          57,
+          63,
+          66,
+          68,
+          71,
+          72,
+          98,
+          99
+        ],
+        "seedwise_unique_valid": [
+          19,
+          19,
+          19,
+          20,
+          20,
+          16,
+          19,
+          12,
+          20,
+          20,
+          19,
+          18,
+          11,
+          19,
+          19,
+          15,
+          20,
+          20,
+          18,
+          17,
+          16,
+          18,
+          17,
+          19,
+          17,
+          16,
+          19,
+          20,
+          8,
+          4
+        ]
+      },
       "weighted-vista-3": {
         "mean_unique_valid": 13.533333333333333,
         "proxy_utd": 0.04538653306101224,
@@ -1119,6 +1169,50 @@
           20,
           16,
           18
+        ]
+      },
+      "weighted-vista-20": {
+        "mean_unique_valid": 16.833333333333332,
+        "proxy_utd": 0.003368472159671753,
+        "schedule": [
+          27,
+          36,
+          45,
+          53,
+          57,
+          63
+        ],
+        "seedwise_unique_valid": [
+          17,
+          19,
+          17,
+          20,
+          20,
+          20,
+          18,
+          12,
+          13,
+          17,
+          19,
+          18,
+          19,
+          20,
+          17,
+          19,
+          20,
+          0,
+          17,
+          18,
+          14,
+          19,
+          19,
+          20,
+          19,
+          16,
+          20,
+          19,
+          19,
+          0
         ]
       },
       "weighted-vista-3": {

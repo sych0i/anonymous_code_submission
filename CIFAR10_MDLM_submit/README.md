@@ -233,8 +233,13 @@ the mean and sample standard deviation across ten seeds, and writes:
 Every displayed value is the arithmetic mean and sample standard deviation
 across the ten seeds. `executed time` is the generation time after schedule
 selection, matching the paper's timing convention; the VISTA warm-up is not
-included. Following Eq. (12) of the paper, the reported objective is the
-unnormalized sum
+included. It is reported **per SMC generation**: each seed's measured wall
+time covers the five independent generations produced in one batch, and
+`generation_seconds_per_run` (the value the tables use) divides it by those
+five. The raw batch total stays in the comparison JSON as
+`generation_seconds` alongside `generation_runs`.
+
+Following Eq. (12) of the paper, the reported objective is the unnormalized sum
 `$\hat{S}(G)=\sum_{t\in\mathcal{T}\setminus G}\hat{V}_{\lceil t\rceil}$`.
 The two Reward screenshots supplied for this package are identical; both are
 reproduced by the single generated `reward.csv` table.

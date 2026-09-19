@@ -27,7 +27,7 @@ POLICY_DISPLAY_NAMES = {
 METRICS = {
   'reward': lambda row: row['mean_reward'],
   'success_rate': lambda row: row['success_rate'],
-  'executed_time_seconds': lambda row: row['generation_seconds'],
+  'executed_time_seconds': lambda row: row['generation_seconds_per_run'],
   'unique_success_lpips003': (
     lambda row: row['unique_success_count']['num_unique_successes']),
 }

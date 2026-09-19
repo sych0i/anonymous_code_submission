@@ -14,7 +14,7 @@ and virtual environment are intentionally excluded.
 | target class | MNIST digit `4` |
 | diffusion transitions | `T=100` (1000-step DDPM, 100-step respacing) |
 | guidance budgets | `T'=6, 12` |
-| policies | interval-1..5, uniform, VISTA, top-V, top-dV, weighted-VISTA powers 1..3 |
+| policies | interval-1..5, uniform, VISTA, top-V, top-dV, weighted-VISTA powers 1..3 and 20 |
 | particles / rollouts | `N=20` / `J=1` |
 | guidance strength | `alpha=2` |
 | warmup | dense full schedule, frozen `M=3`, seeds `100000..100002` |

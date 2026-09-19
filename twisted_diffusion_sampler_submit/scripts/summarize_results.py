@@ -22,6 +22,7 @@ POLICY_ORDER = [
     "weighted-vista",
     "weighted-vista-2",
     "weighted-vista-3",
+    "weighted-vista-20",
 ]
 GROUPS = ("i123", "i45u", "vtt")
 
@@ -151,6 +152,7 @@ def render(aggregate: dict) -> None:
                 "weighted-vista": "Weighted VISTA (^1)",
                 "weighted-vista-2": "Weighted VISTA (^2)",
                 "weighted-vista-3": "Weighted VISTA (^3)",
+                "weighted-vista-20": "Weighted VISTA (^20)",
             }
             label = labels.get(policy, policy)
             print(f"| {label} | {row['mean_unique_valid']:.2f} | {row['proxy_utd']:.4f} |")

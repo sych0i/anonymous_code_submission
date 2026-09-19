@@ -22,6 +22,8 @@ class AggregateTablesTest(unittest.TestCase):
             results[schedule] = {
               'num_samples': 100,
               'generation_seconds': value * 10 + offset,
+              'generation_runs': 5,
+              'generation_seconds_per_run': (value * 10 + offset) / 5,
               'mean_reward': value + offset,
               'success_rate': value / 2 + offset,
               'guided_step_indices': [0],
@@ -79,6 +81,8 @@ class AggregateTablesTest(unittest.TestCase):
               'full': {
                 'num_samples': 100,
                 'generation_seconds': 20.0 + seed,
+                'generation_runs': 5,
+                'generation_seconds_per_run': (20.0 + seed) / 5,
                 'mean_reward': 0.9,
                 'success_rate': 0.8,
                 'guided_step_indices': list(range(1000)),
@@ -101,7 +105,8 @@ class AggregateTablesTest(unittest.TestCase):
       self.assertAlmostEqual(unique['std'], 1 / (2 ** 0.5))
       executed = (
         summary['tables']['executed_time_seconds']['uniform']['12'])
-      self.assertAlmostEqual(executed['mean'], 2.7)
+      # Per SMC generation: the 2.7 s mean wall time covers five runs.
+      self.assertAlmostEqual(executed['mean'], 2.7 / 5)
       score = summary['tables']['s_hat_g']['uniform']['12']
       self.assertAlmostEqual(score['mean'], 1498.5)
       self.assertAlmostEqual(score['std'], 999 / (2 ** 0.5))
@@ -142,6 +147,8 @@ class AggregateTablesTest(unittest.TestCase):
             'uniform': {
               'num_samples': 100,
               'generation_seconds': 1.0,
+              'generation_runs': 5,
+              'generation_seconds_per_run': 0.2,
               'mean_reward': 0.5,
               'success_rate': 0.5,
               'guided_step_indices': [0],

@@ -1456,7 +1456,11 @@ def run_schedule_suite(
 
     results[schedule] = {
       'warmup_seconds': warmup_seconds,
+      # Wall time for all `generation_runs` SMC generations, and the
+      # per-generation time the tables report.
       'generation_seconds': generation_seconds,
+      'generation_runs': total_requested,
+      'generation_seconds_per_run': generation_seconds / total_requested,
       'num_samples': int(samples.shape[0]),
       'mean_reward': reward.mean().item(),
       'reward_std': reward.std().item(),
@@ -1470,7 +1474,8 @@ def run_schedule_suite(
       'unique_success_count': unique_metric,
     }
     print(f'[{schedule}] warmup={warmup_seconds:.2f}s '
-          f'gen={generation_seconds:.2f}s '
+          f'gen={generation_seconds / total_requested:.2f}s/run '
+          f'({generation_seconds:.2f}s for {total_requested} runs) '
           f'reward={results[schedule]["mean_reward"]:.4f} '
           f'success_rate={results[schedule]["success_rate"]:.4f} '
           f'unique_successes={unique_metric["num_unique_successes"]}'
@@ -1745,7 +1750,7 @@ def main():
     score = '–' if r['s_hat_g'] is None else f'{r["s_hat_g"]:.6g}'
     print(
       f'{args.guidance_steps:4d}  {schedule:<10s}  '
-      f'{r["generation_seconds"]:18.2f}  '
+      f'{r["generation_seconds_per_run"]:18.2f}  '
       f'{u["num_unique_successes"]:14d}  {score:>14s}')
   print(f'Saved per-schedule samples/previews to {output_prefix}_<schedule>.*')
   print(f'Saved comparison summary to {summary_path}')

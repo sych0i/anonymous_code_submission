@@ -501,7 +501,8 @@ def render_markdown(payload: Mapping[str, Any], backbone: str) -> str:
     lines = [
         f"**Table {TABLE_NUMBERS[backbone]}: Protein Fitness, "
         f"{display_backbone}, SMC-base** "
-        f"({N_PARTICLES} particles $\\times$ {N_RUNS} runs)",
+        f"({N_PARTICLES} particles $\\times$ {N_RUNS} runs; "
+        f"Time is the mean wall time of a single {N_PARTICLES}-particle run)",
         "",
         "| T' | Policy | Time [s] | Unique Valid |",
         "|---:|:---|---:|---:|",

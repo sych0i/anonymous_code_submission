@@ -12,14 +12,14 @@ import math
 from typing import Dict, Iterable, List, Sequence, Set
 
 
+# Exponents k offered for the (1 - t/T)^k weighted-VISTA objective.
+WEIGHT_POWERS = (1, 2, 3, 20)
 VALUE_POLICIES = (
     "vista",
     "top-V",
     "top-dV",
     "weighted-vista",
-    "weighted-vista-2",
-    "weighted-vista-3",
-)
+) + tuple(f"weighted-vista-{power}" for power in WEIGHT_POWERS if power != 1)
 HEURISTIC_POLICIES = (
     "interval-1",
     "interval-2",
@@ -76,7 +76,9 @@ def normalize_policy_name(policy: str) -> str:
         "weighted-vista": "weighted-vista",
         "weightedvista": "weighted-vista",
     }
-    for power in (2, 3):
+    for power in WEIGHT_POWERS:
+        if power == 1:
+            continue
         aliases[f"weighted-vista-{power}"] = f"weighted-vista-{power}"
         aliases[f"weightedvista{power}"] = f"weighted-vista-{power}"
     for k in range(1, 6):
@@ -236,8 +238,11 @@ def timestep_weights(T: int, power: int | None = None) -> List[float]:
         raise ValueError(f"T must be positive, got {T}")
     if power is None:
         return [1.0] * T
-    if power not in (1, 2, 3):
-        raise ValueError(f"power must be one of 1, 2, 3; got {power}")
+    if power not in WEIGHT_POWERS:
+        raise ValueError(
+            f"power must be one of {', '.join(map(str, WEIGHT_POWERS))}; "
+            f"got {power}"
+        )
     return [(1.0 - timestep / T) ** power for timestep in range(T)]
 
 
