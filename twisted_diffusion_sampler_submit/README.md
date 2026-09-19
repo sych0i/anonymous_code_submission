@@ -68,14 +68,8 @@ not needed for the exact target output.
 `run_deterministic.py` enables deterministic cuDNN/cuBLAS behavior and routes
 the short systematic-resampling CDF cumulative sum through CPU, removing the
 remaining CUDA reduction nondeterminism that affects seedwise Unique Valid.
-The determinism flags live in that wrapper instead of in `run_vista.py`
-because the eight source files under `image_exp/` are hash-pinned: their
-combined digest is the `implementation_sha256` recorded in every manifest and
-in `expected_results.json`. Adding the `weighted-vista-20` policy did change
-`image_exp/vista_schedules.py`, so that fingerprint was updated together with
-the new reference rows. Every pre-existing policy was re-run under the new
-fingerprint and reproduced its published schedule, seedwise Unique Valid
-counts, and proxy UTD exactly, so the older rows remain valid as published.
+The flags live in that wrapper rather than in `run_vista.py` because the
+sources under `image_exp/` are hash-pinned by `implementation_sha256`.
 
 ## Bundle layout
 
